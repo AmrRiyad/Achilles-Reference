@@ -1,3 +1,4 @@
+// Description: Finds the lexicographically smallest rotation of a string.
 int minRotation(string s) {
     int a = 0, n = (int) s.size();
     s += s;
