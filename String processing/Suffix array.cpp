@@ -66,7 +66,7 @@ int compare(int i, int j, int l) {
 int lcp(int i, int j) {
     int ans = 0;
     for (int k = __lg(n); k >= 0; k--) {
-        if (RMQ[i % n][k] == RMQ[j % n][k]) { // it could be cyclic
+        if (RMQ[i % n][k] == RMQ[j % n][k]) {
             ans += 1 << k;
             i += 1 << k;
             j += 1 << k;
