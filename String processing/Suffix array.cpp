@@ -1,7 +1,7 @@
 int RMQ[N][19];
 int n;
 
-vector<int> sort_cyclic_shifts(string const &s) {
+vector<int> sortSA(string const &s) {
     const int alpha = 256;
 
     vector<int> p(n), cnt(max(alpha, n), 0), pn(n);
@@ -48,11 +48,12 @@ vector<int> sort_cyclic_shifts(string const &s) {
     return p;
 }
 
-vector<int> suffix_array_construction(string s) {
+vector<int> suffix_array(string s) {
     s += "$";
-    vector<int> sorted_shifts = sort_cyclic_shifts(s);
-    sorted_shifts.erase(sorted_shifts.begin());
-    return sorted_shifts;
+    n = (int) s.size();
+    vector<int> sa = sortSA(s);
+    sa.erase(sa.begin());
+    return sa;
 }
 
 int compare(int i, int j, int l) {
@@ -63,10 +64,10 @@ int compare(int i, int j, int l) {
 }
 
 
-int lcp(int i, int j) {
+int LCP(int i, int j) {
     int ans = 0;
     for (int k = __lg(n); k >= 0; k--) {
-        if (RMQ[i % n][k] == RMQ[j % n][k]) {
+        if (RMQ[i % n][k] == RMQ[j % n][k]) { // it could be cyclic
             ans += 1 << k;
             i += 1 << k;
             j += 1 << k;
@@ -107,4 +108,25 @@ int get_upper(int i, int len, vector<int> &p) {
         }
     }
     return ans;
+}
+
+vector<int> LCP(string const &s, vector<int> const &p) {
+    n = (int) s.size();
+    vector<int> rank(n, 0), lcp(n - 1, 0);
+    for (int i = 0; i < n; i++)
+        rank[p[i]] = i;
+
+    int k = 0;
+    for (int i = 0; i < n; i++) {
+        if (rank[i] == n - 1) {
+            k = 0;
+            continue;
+        }
+        int j = p[rank[i] + 1];
+
+        while (i + k < n && j + k < n && s[i + k] == s[j + k]) k++;
+        lcp[rank[i]] = k;
+        if (k) k--;
+    }
+    return lcp;
 }
