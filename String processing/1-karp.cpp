@@ -15,8 +15,7 @@ ll popfront(ll hash, ll base, int ch, int sz) {
 }
 
 ll popback(ll hash, ll base, int ch) {
-    ll x = (hash - ch % M + M) % M;
-    return x * power(base, M - 2);
+    return ((hash - ch % M + M) % M) * power(base, M - 2);
 }
 
 ll h[1000001];
