@@ -12,3 +12,8 @@ int minRotation(string s) {
         }
     return a;
 }
+
+/*
+    Test problems:
+        - https://cses.fi/problemset/result/9936107/
+*/
