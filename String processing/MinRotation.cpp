@@ -1,5 +1,5 @@
 // Description: Finds the lexicographically smallest rotation of a string.
-// Note: rotate(s.begin(), s.begin() + minRotation(s), s.end());
+// Note: rotate(s.begin(), s.begin() + minRotation(s), s.end()); [to get the smallest lexicographically rotated string]
 // Time: O(n)
 
 int minRotation(string s) {
